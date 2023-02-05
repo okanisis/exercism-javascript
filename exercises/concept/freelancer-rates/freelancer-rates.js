@@ -26,7 +26,9 @@
  * @returns {number} the rate per day
  */
 export function dayRate(ratePerHour) {
-  throw new Error('Remove this line and implement the function');
+  const hoursInDay = 8;
+
+  return ratePerHour * hoursInDay;
 }
 
 /**
@@ -37,7 +39,7 @@ export function dayRate(ratePerHour) {
  * @returns {number} the number of days
  */
 export function daysInBudget(budget, ratePerHour) {
-  throw new Error('Remove this line and implement the function');
+  return Math.floor( budget / dayRate(ratePerHour) );
 }
 
 /**
@@ -49,5 +51,17 @@ export function daysInBudget(budget, ratePerHour) {
  * @returns {number} the rounded up discounted rate
  */
 export function priceWithMonthlyDiscount(ratePerHour, numDays, discount) {
-  throw new Error('Remove this line and implement the function');
+  const daysInMonth = 22;
+
+  const standardRate = dayRate(ratePerHour);
+  const discountRate = standardRate - (standardRate *  discount) ;
+
+  const months = Math.floor(numDays / daysInMonth);
+  const daysDiscount = months * daysInMonth;
+
+  const totalDiscount = daysDiscount * discountRate;
+  const totalRegular = ( numDays - daysDiscount ) * standardRate;
+  const total = totalDiscount + totalRegular;
+
+  return Math.ceil(total);
 }
