@@ -4,6 +4,8 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+import { endianness } from "os";
+
 /**
  * Calculates the total bird count.
  *
@@ -11,7 +13,11 @@
  * @returns {number} total bird count
  */
 export function totalBirdCount(birdsPerDay) {
-  throw new Error('Please implement the totalBirdCount function');
+  let sum = 0;
+  for (let i = 0; i < birdsPerDay.length; i++) {
+    sum += birdsPerDay[i];
+  }
+  return sum;
 }
 
 /**
@@ -22,7 +28,16 @@ export function totalBirdCount(birdsPerDay) {
  * @returns {number} birds counted in the given week
  */
 export function birdsInWeek(birdsPerDay, week) {
-  throw new Error('Please implement the birdsInWeek function');
+  const days = 7;
+  const beginIdx = week < 2 ? 0 : (week - 1) * days;
+  const endIdx = beginIdx + days;
+  const counts = birdsPerDay.slice(beginIdx, endIdx);
+
+  let sum = 0;
+  for (let i = 0; i < counts.length; i++) {
+    sum += counts[i];
+  }
+  return sum;
 }
 
 /**
@@ -33,5 +48,12 @@ export function birdsInWeek(birdsPerDay, week) {
  * @returns {number[]} corrected bird count data
  */
 export function fixBirdCountLog(birdsPerDay) {
-  throw new Error('Please implement the fixBirdCountLog function');
+  let i = 0;
+  birdsPerDay.forEach(function(day) {
+    if (i % 2 === 0) {
+      birdsPerDay[i] = day + 1;
+    }
+    i++;
+  });
+  return birdsPerDay;
 }
