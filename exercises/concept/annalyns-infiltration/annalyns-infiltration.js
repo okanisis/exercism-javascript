@@ -6,6 +6,8 @@
 // understand types, JSDoc, or TypeScript in order to complete this JavaScript
 // exercise, and can completely ignore this comment block and directive.
 
+import { arch } from "os";
+
 // 👋🏽 Hi again!
 //
 // A quick reminder about exercise stubs:
@@ -27,7 +29,10 @@
  * @return {boolean} Whether or not you can execute a fast attack.
  */
 export function canExecuteFastAttack(knightIsAwake) {
-  throw new Error('Remove this line and implement the function');
+  if ( !knightIsAwake ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -40,7 +45,10 @@ export function canExecuteFastAttack(knightIsAwake) {
  * @returns {boolean} Whether or not you can spy on someone.
  */
 export function canSpy(knightIsAwake, archerIsAwake, prisonerIsAwake) {
-  throw new Error('Remove this line and implement the function');
+  if ( knightIsAwake || archerIsAwake || prisonerIsAwake ) {
+    return true;
+  };
+  return false;
 }
 
 /**
@@ -52,7 +60,10 @@ export function canSpy(knightIsAwake, archerIsAwake, prisonerIsAwake) {
  * @returns {boolean} Whether or not you can send a signal to the prisoner.
  */
 export function canSignalPrisoner(archerIsAwake, prisonerIsAwake) {
-  throw new Error('Remove this line and implement the function');
+  if( !archerIsAwake && prisonerIsAwake ) {
+    return true;
+  };
+  return false;
 }
 
 /**
@@ -71,5 +82,8 @@ export function canFreePrisoner(
   prisonerIsAwake,
   petDogIsPresent
 ) {
-  throw new Error('Remove this line and implement the function');
+  if ( (petDogIsPresent && !archerIsAwake) || (!petDogIsPresent && prisonerIsAwake && !knightIsAwake && !archerIsAwake) ) {
+    return true;
+  };
+  return false;
 }
